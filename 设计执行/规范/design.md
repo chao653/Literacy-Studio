@@ -575,6 +575,17 @@ checkbox/size-height
 - 是否保证文本不溢出、不互相遮挡、不因内容变化破坏布局。
 - 是否在桌面、平板、移动视口中检查过关键页面。
 
+## 15.1 库实际值与本文出入记录（以库为准）
+
+| 日期 | 项目 | 本文 | `Design System 2.0 Foundations` 库实际 |
+| --- | --- | --- | --- |
+| 2026-09-15 | 文本样式 scale | `xs` = 12/16，无 `xxs` | 新增 `text/xxs/*` = 12/16（regular / medium / semibold）；`text/xs/*` 改为 13/18 |
+| 2026-09-15 | 文本样式 weight | 仅 `text/6xl/bold` 额外可用 | `semibold` 在 xxs～6xl 全 scale 都有；`bold` 仍只有 `6xl` |
+| 2026-09-15 | Typography variables | 命名未写明 | 库内为 `type/{scale}/size`、`type/{scale}/lh`，含 `xxs`（12/16）、`xs`（13/18） |
+| 2026-09-15 | Spacing | 无 18 | 新增 `4_5` = 18 |
+| 2026-09-15 | Spacing alias 解析值 | `space/layout/sm` = `10`(40) 等 | 实际解析：`space/layout/sm` 40、`space/layout/md` 64、`space/layout/lg` 96；`space/component/xs` 8、`sm` 12、`md` 16、`lg` 24（与别名表一致） |
+| 2026-09-15 | Semantic 新增 | 未列 | `fill/neutral/*` 新增 `subtle`、`divider`、`invert`、`surface`；`fill/brand/primary/deep`；`fill/selected/indicator`；`border/error` |
+
 ## 16. 特别注意
 
 Typography 页面画布上可能存在旧展示标签或 demo 文案。若画布展示名与本地 text style 或 variable collection 不一致，以 Figma 本地样式和变量为准。
