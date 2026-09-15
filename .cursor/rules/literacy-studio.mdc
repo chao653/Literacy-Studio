@@ -18,6 +18,6 @@ alwaysApply: true
 
 ## 测试站
 
-- URL：待填
+- URL：https://staging.kira-learning.com/ai-tools/literacy-studio/（未登录会跳登录页）
 - 默认视口：1440x900
-- 账号密码：只在 `需求调研/登录说明.md`，不写进本文件
+- 登录路径：见 `需求调研/登录说明.md`；账号密码只在本地 `需求调研/登录凭据.md`，不写进本文件
