@@ -20,4 +20,5 @@ alwaysApply: true
 
 - URL：https://staging.kira-learning.com/ai-tools/literacy-studio/（未登录会跳登录页）
 - 默认视口：1440x900
-- 登录路径：见 `需求调研/登录说明.md`；账号密码只在本地 `需求调研/登录凭据.md`，不写进本文件
+- 登录路径：见 `需求调研/登录说明.md`
+- 账号密码：Cloud Agent 读 Cursor Secrets `KIRA_STAGING_EMAIL` / `KIRA_STAGING_PASSWORD`；本地读 `需求调研/登录凭据.md`（已 gitignore）。两者的值都不写进本文件、不入库、不在输出里回显
