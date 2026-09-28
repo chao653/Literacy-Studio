@@ -30,8 +30,9 @@
 
 ## 复用惯例（业务纹样）
 
-- 待填（如文字缩写 Avatar 的配色与字样先例）。
+- **数据表格（ShadCN `Table / Head` + `Table / Cell`）**：数字列（WCPM、Accuracy、Comprehension、Interventions 等）一律左对齐、固定列宽；Actions 列表头右对齐、列宽 FILL 吃掉剩余宽度；表头单元格跟随列宽（FILL），保证表头下边线连续。样板：[Screener Monitor 表格](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2057-19141)（Student 333 / Status 226 / Risk 171 / WCPM 148 / Accuracy 121 / Actions FILL）。依据：用户指令 2026-09-28「表格都按这个来改」。
 
 ## 修改记录
 
 - 2026-09-15 由 `project-scaffold` 脚手架创建（模板版，三库口径为 Kira 默认，待项目确认）。
+- 2026-09-28 复用惯例补「数据表格」一条。
