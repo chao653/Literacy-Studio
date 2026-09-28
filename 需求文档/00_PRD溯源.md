@@ -15,3 +15,5 @@
 | P-01 | Teacher View §2.2 Dashboard Metric Cards（At Risk 面板 “AI Tutor” 入口） | Figma `Quick Assign` section 第 2 列 `2056:18779`；`设计执行/日志/Quick Assign 与 Screener 入口.md` |
 | P-02 | Teacher View §7.4 Quick Assign Modal（入口、Monitor actions、推荐面板状态、T7、6 步、Step 1 / Step 2、分配后） | Figma `Quick Assign` section（1925:31830）第 2–5 列；同上日志 |
 | P-03 | Teacher View §3.2 Session Phases（6 个阶段描述、固定顺序） | 推荐面板 Session Phases 块（如 `2066:19598`）；Create task – Latest（1947:12808） |
+| P-04 | Teacher View §4.1 Page Structure / Preview Task / Edit lock / Assignment list；§4.2 Assignment 状态 | Figma `Task details`（1925:16759）；`设计执行/日志/Task Detail.md` |
+| P-05 | Teacher View §7.1 Assign Modal | `Task details` 第 1 列 `1925:16903`、`1925:17129`、`1925:17403` |
