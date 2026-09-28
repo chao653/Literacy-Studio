@@ -80,3 +80,10 @@
   - 学生端 “Join - Task Preview” 是占位页（“Placeholder · §2.1”），没有放进预览。
 - 复核：32 张预览页与学生端源页面逐节点比对（名称、类型、尺寸、位置、可见性、文字），全部一致；唯一差异是 Warm-Up 3 张里 “Message Bubble” 内布尔运算 `Union` 的包围盒尺寸（复制后重新计算），截图对比外观一致。
 - 结果状态：已完成。Your Turn 学生页尚未设计（APAC-6085），预览中暂缺。
+
+## 2026-09-28 · 去掉 Preview 列里重复的 Task Detail 页
+
+- 任务来源：用户指令「这个流程（node 1925-18136）为什么没改？重复吗？重复就去掉」。
+- 原因：Start & Mic Check 列顶部的 “Task detail - preview task - entry”（`2098:23397`）和 Comprehension & Results 列末尾的 “Task detail - preview task - after Exit Preview”（`2099:24071`）都是教师端 Task Detail 页，不属于学生页，所以上一轮没有跟着换；内容与第 1 列 “Task detail - with assignments”（`1925:16761`）相同（入口帧只多一个指针），属于重复。
+- 操作摘要：删除这两帧；Start & Mic Check 列 5 张学生页上移，从 y=605 开始；规则板 Entry / Exit Preview 两条改为指向第 1 列 “Task detail - with assignments”；改动说明卡同步。section 高度保持 9816。
+- 结果状态：已完成；Preview 5 列现在只含学生页（共 32 张）。
