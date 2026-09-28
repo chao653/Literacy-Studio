@@ -87,3 +87,9 @@
 - 原因：Start & Mic Check 列顶部的 “Task detail - preview task - entry”（`2098:23397`）和 Comprehension & Results 列末尾的 “Task detail - preview task - after Exit Preview”（`2099:24071`）都是教师端 Task Detail 页，不属于学生页，所以上一轮没有跟着换；内容与第 1 列 “Task detail - with assignments”（`1925:16761`）相同（入口帧只多一个指针），属于重复。
 - 操作摘要：删除这两帧；Start & Mic Check 列 5 张学生页上移，从 y=605 开始；规则板 Entry / Exit Preview 两条改为指向第 1 列 “Task detail - with assignments”；改动说明卡同步。section 高度保持 9816。
 - 结果状态：已完成；Preview 5 列现在只含学生页（共 32 张）。
+
+## 2026-09-28 · 去掉 Preview 的 Start & Mic Check 列
+
+- 任务来源：用户指令「这个流程（node 1925-18136）下面的五个页面明明都还在啊」——上一条「重复就去掉」指的是这一列的 5 张 Mic Check 页，不是上方的 Task Detail 页。
+- 操作摘要：删除 `2118:24215`（Request Permission）、`2118:24248`（Browser Permission Prompt）、`2118:24283`（Listening）、`2118:24329`（Passed）、`2118:24363`（Headphone Question）及列头 `1925:18136`；其余 4 个 Preview 列与规则板整体左移一列（Intro & Warm-Up x=5793、Echo x=7753、Guided x=9713、Comprehension & Results x=11673、规则板 x=13633），section 宽度 16713 → 14753。规则板 “What runs” 保留 “Mic Check (runs as usual)”，最后一条注明 Mic Check 与学生端 “Happy Path 1: Start & Mic Check” 完全相同、不重复放；改动说明卡同步为「第 3–6 列、27 张」。
+- 结果状态：已完成；Preview 现为 4 列 27 张学生页。
