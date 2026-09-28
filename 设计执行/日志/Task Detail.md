@@ -56,3 +56,10 @@
   - Preview 流程只放了 Mic Check / Intro / Guided Reading / Comprehension / Results 五张学生页；Warm-up、Echo、Your Turn 没有重复画（Your Turn 学生稿还没有）。
 - 复核：逐帧截图检查；页面根节点无游离节点；section 内无 `PRD-Review` 便签。
 - 结果状态：已完成；待用户确认项见 `决策日志.md` 2026-09-28「Task Detail（APAC-6133）」条目与 `需求文档/待确认问题清单.md` #4–#6。
+
+## 2026-09-28 · 主按钮文案改回 “Assign to Students”
+
+- 任务来源：用户指令「把文案 New Assignment 改成 Assign to Students」。
+- 涉及节点：`Task details`（1925:16759）9 帧共 12 个 `Button` 实例：`1925:16761`、`1925:16903`、`1925:17129`、`1925:17403`（各 1 个，头部）；`1925:17567`、`1925:17643`、`1925:17719`（各 2 个，头部 + 空态）；`2098:23397`、`2099:24071`（各 1 个，Preview 列入口与返回帧）。改动说明卡 `2100:24174` 的对应描述同步。
+- 操作摘要：`Button Text` 属性 “New Assignment” → “Assign to Students”（保留 + 图标），图层名同步。逐个 section 扫描，其他 section 没有 “New Assignment”。顺带把三张空态帧的说明文字从 FILL 改为 HUG，第二行不再折行。
+- 结果状态：已完成；PRD 回写见 `需求文档/待确认问题清单.md` #7。
