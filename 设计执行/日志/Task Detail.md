@@ -93,3 +93,15 @@
 - 任务来源：用户指令「这个流程（node 1925-18136）下面的五个页面明明都还在啊」——上一条「重复就去掉」指的是这一列的 5 张 Mic Check 页，不是上方的 Task Detail 页。
 - 操作摘要：删除 `2118:24215`（Request Permission）、`2118:24248`（Browser Permission Prompt）、`2118:24283`（Listening）、`2118:24329`（Passed）、`2118:24363`（Headphone Question）及列头 `1925:18136`；其余 4 个 Preview 列与规则板整体左移一列（Intro & Warm-Up x=5793、Echo x=7753、Guided x=9713、Comprehension & Results x=11673、规则板 x=13633），section 宽度 16713 → 14753。规则板 “What runs” 保留 “Mic Check (runs as usual)”，最后一条注明 Mic Check 与学生端 “Happy Path 1: Start & Mic Check” 完全相同、不重复放；改动说明卡同步为「第 3–6 列、27 张」。
 - 结果状态：已完成；Preview 现为 4 列 27 张学生页。
+
+## 2026-09-29 · Preview 去掉额外预览条，Exit Preview 放进学生顶栏
+
+- 任务来源：用户指令「preview 按照这个（node 2118-33633）来改，去掉多余的 top bar」。样板由用户手改：删除 Preview 横幅，学生顶栏 `Container` 里的 “Home” 按钮改为 “Exit Preview”（`Button` Outline / default，左图标换成 ArrowLeft `1780:6583`），帧高恢复为学生页原高度。用户同时已手改两张 Intro 页（删横幅，顶栏文字改 “Exit Preview”），但帧高仍是 798。
+- 操作摘要（其余 24 张）：
+  - 删除 Preview 横幅：auto layout 帧直接删并把固定高度减 48；非 auto layout 帧（Comprehension 7 张、Results）删后子元素上移 48、帧高减 48（不触发约束）。
+  - Warm-Up / Echo / Guided / Comprehension 共 23 张：顶栏 `Container` 内 “Home” 按钮改为 “Exit Preview” + ArrowLeft，与样板相同。
+  - Results - Completed：顶栏是普通 frame 的 “← Home” 文字，改为 “← Exit Preview”。
+  - 两张 Intro 页帧高 798 → 750。
+  - 4 列按新高度重新排布（间距 200）。规则板 “Preview banner” 改为 “Exit Preview in the top bar”，最后一条同步；改动说明卡「第 3–6 列」与「待确认」同步。
+- 复核：27 张与学生端源页面逐节点比对，差异只剩顶栏 “Exit Preview” 文案与 House → ArrowLeft 图标（Intro / Results 为纯文字），无横幅，帧高全部与源页面一致。
+- 结果状态：已完成；PRD 的预览提示文案现在不显示、Results 页右下 “Back to Home” 未改，均列入待确认。
