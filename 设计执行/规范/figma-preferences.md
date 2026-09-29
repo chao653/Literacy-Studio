@@ -31,8 +31,10 @@
 ## 复用惯例（业务纹样）
 
 - **数据表格（ShadCN `Table / Head` + `Table / Cell`）**：数字列（WCPM、Accuracy、Comprehension、Interventions 等）一律左对齐、固定列宽；Actions 列表头右对齐、列宽 FILL 吃掉剩余宽度；表头单元格跟随列宽（FILL），保证表头下边线连续。样板：[Screener Monitor 表格](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2057-19141)（Student 333 / Status 226 / Risk 171 / WCPM 148 / Accuracy 121 / Actions FILL）。依据：用户指令 2026-09-28「表格都按这个来改」。
+- **表格卡片整体样板**：[Monitor 表格卡片 `2182:941`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2182-941)。状态筛选用灰底分段轨道（`fill/neutral/subtle`、圆角 8、内边距 4）+ `Tabs / Trigger`，不用按钮胶囊；表头 48 高；每行固定 52 高，两行内容收小上下内边距（6 / 8）而不加高；单元格内容不得超出列宽（FILL）；空值 `--` / `—` 用 `text/tertiary`；Actions 单元格右对齐，Link 按钮 + ⋮ 图标按钮，Link 文字用 `text/brand/default`；剩余宽度由名字列（Student / Participants）吸收，Actions 固定宽度、按最长操作文字留够（修订上一条「Actions FILL」）。依据：用户指令 2026-09-29「section 里表格设计都参考这里」。
 
 ## 修改记录
 
 - 2026-09-15 由 `project-scaffold` 脚手架创建（模板版，三库口径为 Kira 默认，待项目确认）。
 - 2026-09-28 复用惯例补「数据表格」一条。
+- 2026-09-29 复用惯例补「表格卡片整体样板」一条（`2182:941`）。
