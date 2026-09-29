@@ -17,3 +17,5 @@
 | P-03 | Teacher View §3.2 Session Phases（6 个阶段描述、固定顺序） | 推荐面板 Session Phases 块（如 `2066:19598`）；Create task – Latest（1947:12808） |
 | P-04 | Teacher View §4.1 Page Structure / Preview Task / Edit lock / Assignment list；§4.2 Assignment 状态 | Figma `Task details`（1925:16759）；`设计执行/日志/Task Detail.md` |
 | P-05 | Teacher View §7.1 Assign Modal | `Task details` 第 1 列 `1925:16903`、`1925:17129`、`1925:17403` |
+| P-06 | Teacher View §5.1–§5.5 Monitor（顶栏、表格、19 行矩阵、AI Insights） | Figma `Monitor AI tutor`（1925:10702）Latest 列；`设计执行/日志/Monitor.md` |
+| P-07 | Teacher View §7.2 Remove Student / §7.3 End Task 弹窗 | `2155:26011`（Remove）、`2160:26919`（End） |
