@@ -41,3 +41,9 @@
 - 复核：14 帧逐张截图检查；section 内无文本字符冒充的图标；新帧互不重叠；文案对照 PRD §7.4 原文逐条核对（“Assign AI Tutor”、“From: …”、“(same as Screener)”、“Mode”、“Assigned Successfully!”、“has been assigned to”、“AI Tutor assigned to [Name]”、“No AI Tutor needed right now”、“AI Tutor already assigned”、“Assigned”、“What this passage needs”）。
 - 结果状态：已完成；待用户确认项见 `决策日志.md` 2026-09-28 条目与 `需求文档/待确认问题清单.md` #1–#3。
 - 截图证据：本仓库为 GitHub 公开仓库，设计稿截图未入库。
+
+## 2026-09-29 · 文字颜色修复（随 APAC-6131 一并处理）
+
+- 起因：做 APAC-6131 时发现，文字重绑同一个颜色 token 后，缓存色会停在兜底色 `#000`，画面显示为黑色（详见 `设计执行/日志/Monitor.md`「踩坑与修正」）。
+- 处理：对本 section 13 张 Latest 帧扫描，修正 18 处文字填充——颜色改为 token 在该节点上的解析值并重新绑定，外观回到各自绑定的 token 颜色。未改文案、布局与组件。
+- 结果状态：已完成。
