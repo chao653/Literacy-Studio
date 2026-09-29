@@ -105,3 +105,11 @@
   - 4 列按新高度重新排布（间距 200）。规则板 “Preview banner” 改为 “Exit Preview in the top bar”，最后一条同步；改动说明卡「第 3–6 列」与「待确认」同步。
 - 复核：27 张与学生端源页面逐节点比对，差异只剩顶栏 “Exit Preview” 文案与 House → ArrowLeft 图标（Intro / Results 为纯文字），无横幅，帧高全部与源页面一致。
 - 结果状态：已完成；PRD 的预览提示文案现在不显示、Results 页右下 “Back to Home” 未改，均列入待确认。
+
+## 2026-09-29 · Results 页 “Back to Home” 改为 Exit Preview
+
+- 任务来源：用户指令「需要确认的内容，先以工单为主，再以PRD为准，不确定的再问我」。APAC-6133 工单的预览流程写明以 “Exit Preview” 返回 Assignment 列表结束（待确认 #9 关闭）。
+- 操作摘要：`Preview · Results - Completed`（`2118:37315`）右下 `Button`（Outline / default，`2118:37444`）文字 “Back to Home” → “Exit Preview”，左图标 House → `Icon / ArrowLeft`（与本页顶栏 Exit Preview 同一组件）。规则板（`2100:24154`）最后一条改为「顶栏 Home 与 Results 页 “Back to Home” 都换成 “← Exit Preview”」；改动说明卡（`2100:24174`）第 3–6 列说明同步，「待确认」改为 3 条 PRD 待回写（Assign 弹窗宽度、Edit 退出确认、预览提示）+ 工程归属。
+- 预览提示 “Preview Mode — Your actions won't be recorded.”：按用户去掉预览条的指令不显示，待确认 #8 关闭，工单与 PRD 待回写。
+- 复核：截图确认按钮为 “← Exit Preview”；Preview 与学生端源页面的差异现为顶栏与 Results 按钮两处。
+- 结果状态：已完成。
