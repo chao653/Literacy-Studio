@@ -107,7 +107,7 @@
   - Your Turn Status、Student Pagination 两个纵向母版默认固定 100 高，改为 hug。
   - Open Response 的 Long 变体原来放的是短文本，看不出截断效果：母版 Answer 设为最多 3 行截断，实例换成长回答。
   - 抽屉 `Sheet` 面板高度只有 867，改为 FILL 撑满 900。
-  - 写文档时对照 PRD 发现复述卡有三处不对，已修：K 帧转写原来是展开的，改为默认收起；状态板 Cut off early 写 “120s / 120s max”（这个状态是被老师结束或窗口到期打断，示例不该是录满上限），改为 38s，播放器总长同步；Too short 的播放器总长还是 00:41，改为 00:03，并借这张卡画出转写不可用状态。状态板只保留 Ready to listen 一张展开，作为展开态示例，箭头换成 DS2 `CaretUp`。
+  - 写文档时对照 PRD 发现复述卡有三处不对，已修：K 帧转写原来是展开的，改为默认收起；状态板 Cut off early 写 “120s / 120s max”（这个状态是被老师结束或窗口到期打断，示例不该是录满上限），改为 38s，播放器总长同步；Too short 的播放器总长还是 00:41，改为 00:03，并借这张卡画出转写不可用状态。状态板只保留 Ready to listen 一张展开，作为展开态示例，箭头换成 DS2 `CaretUp`。规则板 Kindergarten 一条和状态板这组的说明也补上了转写规则。
   - 复核时发现画板里 18 个、母版里 144 个文字节点没挂 text style，另有 20 个容器叫 “Text”：按字号和字重挂上 DS 2.0 对应样式（`text/{xs,sm,base,lg,2xl}/{regular,medium,semibold}`），容器改名为 “Copy”。
   - 重建时演示学生的姓和 Monitor Latest 对不上，已改回同一名单（Carmen Reyes、Hannah Wilson、Gabriel Martinez、Fatima Al-Hassan、Isaac Thompson、Emma Rodriguez、Aaliyah Johnson）。进行中帧选 Emma，是因为她在 Monitor「Scheduled · In Progress」帧里停在 Comprehension，开放题提交后才会有行为提醒。其他人的状态不和那一帧对齐：每帧示意的是作业的不同时刻。
 - 复核：每帧截图检查。脚本扫描 10 帧 + 17 个母版：非实例节点的填充和描边全部绑定变量、文字全部挂样式、没有默认图层名、帧之间不重叠。抽屉帧固定 900 高、裁掉超出部分，这是有意的。
