@@ -5,7 +5,7 @@
 - 类型：Notion
 - 链接或路径：[PRD — Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531)（父页 [PRD] Literacy Studio AI Tutor）
 - 版本 / 最后更新日期：2026-11-11（Notion `page_last_edited_at` 2026-11-11T03:10Z；§6 最近几轮修订标注为 10-20、10-25、11-08）。上一版记录：2026-09-23。
-- 老师端 AI Tutor 页面另以代码原型为准：PR #27776 原型，11-03 产品确认（Linear APACFE-4659）；原型与 PRD 的差异见 `待确认问题清单.md` #21–#31。原型环境已下线，核对靠 Linear 工单里的截图和描述。
+- 老师端 AI Tutor 页面另参照代码原型：PR #27776 原型，11-03 产品确认（Linear APACFE-4659）。用户 2026-11-12 定了原型和 PRD 不一致时以 PRD 为准，原型只补 PRD 没写到的版式和细节；差异和处理见 `设计执行/日志/Student Detail.md` 2026-11-12（二）。原型环境已下线，核对靠 Linear 工单里的截图和描述。
 
 ## 章节锚点表
 
