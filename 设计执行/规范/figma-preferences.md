@@ -38,15 +38,15 @@
 | Student Detail / Summary Card | `4427:1044` | Card = Progress / Comprehension / Your Turn × Tone = Positive / Warning / Neutral；Answer、Fact |
 | Student Detail / Timeline Phase | `4427:1117` | Phase、Duration、Show duration、Show icon（Your Turn 麦克风）、Show divider、Stopped note / Show stopped、Muted note / Show muted |
 | Student Detail / Your Turn Status | `4427:1127` | Label = No help / Used help / No usable recording / Not offered；Duration、Show duration |
-| Student Detail / Student Pagination | `4427:1152` | 无属性（Previous Student / Next Student） |
+| Student Detail / Student Pagination | `4427:1152` | 无属性（← Prev / Next →） |
 | Student Detail / Identity | `4427:1164` | Initials、Name、Task、Status、Show status、Total |
 | Student Detail / Word Group | `4430:961` | Heading、Explanation、Show explanation、Show word 1–8 |
 | Student Detail / Audio Player | `4430:998` | Current、Total |
-| Student Detail / Mark Group | `4430:1053` | Selected = None / Read it / Needs support / Unclear；Show hint |
+| Student Detail / Mark Group | `4430:1053` | Selected = None / Read it / Still needs support / Can't tell；Show hint |
 | Student Detail / MCQ Option | `4430:1123` | State = Default / Correct / Wrong；Letter、Option、Show tag |
 | Student Detail / Kira Message | `4430:1149` | Caption、Show caption、Message |
 | Student Detail / Question Card | `4434:942` | Status = Correct on 1st try / Correct after hint / Incorrect / Skipped；Question、Show option 1–4（嵌 MCQ Option） |
-| Student Detail / Open Response | `4434:1059` | Response = Recording / Typed / Long / Under review / Not submitted；Question、Answer（最多 3 行） |
+| Student Detail / Open Response | `4434:1059` | Response = Recording / Typed / Long / Under review / Not submitted；Question、Answer（Long 变体放前 500 个字符 + Show more） |
 | Student Detail / Retelling Body | `4434:1461` | Badge = Ready to listen / Cut off early / Too short (under 5s) / No recording；Duration、Transcript、Show transcript、Show unavailable |
 | Student Detail / Behavior Alert Row | `4434:1732` | Status = Needs review / Reviewed；Initials、Name、Time、Summary |
 | Student Detail / Empty State | `4434:1777` | Title、Body |
@@ -63,3 +63,4 @@
 - 2026-09-28 复用惯例补「数据表格」一条。
 - 2026-09-29 复用惯例补「表格卡片整体样板」一条（`2182:941`）。
 - 2026-11-12 业务组件回填 Components section 链接（`4427:1173`），登记 Student Detail 17 个母版（APAC-6130）。
+- 2026-11-12 Student Detail 母版文案按 PRD 改：Student Pagination、Mark Group 的变体名、Open Response 的长回答截断（APAC-6130，原型和 PRD 不一致以 PRD 为准）。
