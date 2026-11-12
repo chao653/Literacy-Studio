@@ -60,7 +60,7 @@
   - **PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531)** §6.0–§6.2，以及 §5.4.2、§5.4.3、§5.4.5、§5.4.6。§6 在 10-20、10-25、11-08 各修订过一轮，Notion 最后编辑时间是 2026-11-11。
   - 相关 Linear 单：APACFE-4835（删除头部常驻说明）、APACFE-4889（没有告警时不显示 Chat Activity）、APACFE-4891（K 年级身份行）、APACPO-468（未完成但有行为提醒）、APACPO-471（开放题录音连播）、APACPO-459（Transcript 只放在复述卡，朗读页不出）、APACPO-472（What Kira said today 收录规则）。
   - 取证限制：原型环境已经下线，staging 账号没有 Literacy Studio 权限，所以原型画面只能靠 Linear 工单里的截图和描述，没法逐屏点开对照。
-- 口径：版式和文案按原型；原型没画到的状态按 PRD 补；两边说法不一致的，画板按原型，差异进「待确认问题清单」#21–#32 交 PM 回写。这一条修订了 09-24「UI 文案一律以 PRD 为准」，见 `决策日志.md` 2026-11-12。
+- 口径：版式和文案按原型；原型没画到的状态按 PRD 补；两边说法不一致的，画板按原型，差异进「待确认问题清单」#21–#31 交 PM 回写。这一条修订了 09-24「UI 文案一律以 PRD 为准」，见 `决策日志.md` 2026-11-12。
 - 涉及节点：
   - section `Student detail - AI Tutor` · node_id `286:18332` · [Figma 链接](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=286-18332)。9/30 的 8 帧原地重建（node_id 和页面外壳不变，只换 Content），另新增 2 帧；原稿 6 帧未动。section 现在是 11320 × 8066。
   - Components 页「Student Detail」分区 · node_id `4427:1173` · [Figma 链接](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=4427-1173)：新建 17 个业务组件，清单登记在 `设计执行/规范/figma-preferences.md`「业务组件」。
@@ -92,13 +92,13 @@
   - **左栏 With Kira's support**：按 Guided Reading 里达到的最高帮助级别分组，每个词只出现一次。“Kira read these words for them” 在前，“Kira gave a hint on these words” 在后；词标签一律灰色，不写次数、不写 cue 原文；空组隐藏，两组都空时写 “No words tapped during Guided Reading.”。
   - **右栏 Your Turn — on their own**：行为标签 + 时长；点过 Help me 时加一行 “They tapped “Help me””；Your Turn 里点过的词按左栏同样两组列出；下面是回放和教师标注 Read it / Needs support / Unclear（原型文案）。Listen once 次数只记录、不显示。No usable recording 时不出播放器和标注，只留一行提示（原型文案），老师结束或窗口到期时再加 “The task ended at this step.”。Not offered 时写 “Independent attempt skipped this session”，原因用 PRD 原句。
   - **Comprehension**：副标题 “{c} of {t} correct · hint answers count as correct”。每题列出全部选项：正确项绿勾、选错的红叉，标 Picked 1st try / Picked after hint / Correct answer，不再单独放正确答案块；状态用文字 badge。Open Response 不标对错，有五种状态：有录音（多段连播）、只打字（“Typed answer, no recording”）、长回答（3 行截断 + Show more）、[Content under review]、Not submitted。
-  - **Kindergarten**：没有 Your Turn，也没有摘要行。右栏直接放复述卡（Ready to listen / Cut off early / Too short (under 5s) / No recording），只能回放、不能标注。时间线末格是 Oral Retelling；复述卡在页面上只出现一次（PRD 10-25）。
+  - **Kindergarten**：没有 Your Turn，也没有摘要行。右栏直接放复述卡（Ready to listen / Cut off early / Too short (under 5s) / No recording），只能回放、不能标注；转写放在 “Transcript (auto-generated)” 开关下，默认收起（PRD §6.2、APACPO-459）。时间线末格是 Oral Retelling；复述卡在页面上只出现一次（PRD 10-25）。
   - **What Kira said today**：最多 5 条，按时间排，每条只有 “Kira · {time}” + 气泡，不带分类标签（PRD 11-08、APACPO-472）。
   - **Chat Activity**：只在有行为提醒或可复核的对话时出现，不写 “All clear”。一行 = 头像 + 姓名 + 时间 + Needs review / Reviewed + Behavior alert 摘要 + See Conversation。点开是右侧抽屉，页面上不展开学生原话；抽屉内容顺序按 PRD：状态 + 时间 → 题目 → 学生原话 → Kira 回复（标 Fixed line）→ 复核说明 → 复核状态。
   - **卡片状态板**（`2259:29943`）：摘要卡 9 种（3 卡 × 绿 / 橙 / 灰）；Comprehension G4–5 三题（第一次对 / 答错 / 跳过）；Open Response 5 态；Oral Retelling 4 态；Your Turn 4 个行为标签 + 教师标注 4 态；Chat Activity 两种状态的提醒行 + 抽屉两态。
 - 设计判断（PRD 和原型都没写到）：
   - Not submitted 用灰色小字；Under review 和 Not submitted 时不显示 Kira 的回复。
-  - 复述转写不可用时写 “Transcript unavailable — listen to the recording.”（PRD 只要求「说明转写不可用、请老师直接听」）。
+  - 复述转写不可用时写 “Transcript isn't available for this recording. Listen to the recording instead.”（PRD 只要求「说明转写不可用、请老师直接听」），同时隐藏 Transcript 开关。
   - Skipped 的题，正确选项也标 “Correct answer”。
   - Kira 的时间用钟点（“Kira · 2:35 PM”）；PRD 只写 “time”。
   - 抽屉标题 “Behavior alert”，副标题 “{name} · {task}”；复核说明等抽屉文案是示意，PRD 只给了结构。
@@ -107,6 +107,7 @@
   - Your Turn Status、Student Pagination 两个纵向母版默认固定 100 高，改为 hug。
   - Open Response 的 Long 变体原来放的是短文本，看不出截断效果：母版 Answer 设为最多 3 行截断，实例换成长回答。
   - 抽屉 `Sheet` 面板高度只有 867，改为 FILL 撑满 900。
+  - 写文档时对照 PRD 发现复述卡有三处不对，已修：K 帧转写原来是展开的，改为默认收起；状态板 Cut off early 写 “120s / 120s max”（这个状态是被老师结束或窗口到期打断，示例不该是录满上限），改为 38s，播放器总长同步；Too short 的播放器总长还是 00:41，改为 00:03，并借这张卡画出转写不可用状态。状态板只保留 Ready to listen 一张展开，作为展开态示例，箭头换成 DS2 `CaretUp`。
   - 复核时发现画板里 18 个、母版里 144 个文字节点没挂 text style，另有 20 个容器叫 “Text”：按字号和字重挂上 DS 2.0 对应样式（`text/{xs,sm,base,lg,2xl}/{regular,medium,semibold}`），容器改名为 “Copy”。
   - 重建时演示学生的姓和 Monitor Latest 对不上，已改回同一名单（Carmen Reyes、Hannah Wilson、Gabriel Martinez、Fatima Al-Hassan、Isaac Thompson、Emma Rodriguez、Aaliyah Johnson）。进行中帧选 Emma，是因为她在 Monitor「Scheduled · In Progress」帧里停在 Comprehension，开放题提交后才会有行为提醒。其他人的状态不和那一帧对齐：每帧示意的是作业的不同时刻。
 - 复核：每帧截图检查。脚本扫描 10 帧 + 17 个母版：非实例节点的填充和描边全部绑定变量、文字全部挂样式、没有默认图层名、帧之间不重叠。抽屉帧固定 900 高、裁掉超出部分，这是有意的。
@@ -116,4 +117,4 @@
   - 卡片右上 (i) 的 “How to read this card” 只画了图标，提示内容看不到原型，没有编。
   - 页面渐变底仍沿用原稿（未绑 token）。
   - 截图没有入库（公开仓库，沿用 `Token绑定.md` 和 9/30 的做法）。
-- 结果状态：已完成；口径修订见 `决策日志.md` 2026-11-12，PM 待回写见 `需求文档/待确认问题清单.md` #21–#32。
+- 结果状态：已完成；口径修订见 `决策日志.md` 2026-11-12，PM 待回写见 `需求文档/待确认问题清单.md` #21–#31，抽屉组件来源待用户提供（#32）。
