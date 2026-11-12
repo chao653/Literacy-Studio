@@ -118,3 +118,42 @@
   - 页面渐变底仍沿用原稿（未绑 token）。
   - 截图没有入库（公开仓库，沿用 `Token绑定.md` 和 9/30 的做法）。
 - 结果状态：已完成；口径修订见 `决策日志.md` 2026-11-12，PM 待回写见 `需求文档/待确认问题清单.md` #21–#31，抽屉组件来源待用户提供（#32）。
+
+## 2026-11-12（二）· 原型和 PRD 不一致的地方改按 PRD（APAC-6130）
+
+- 任务来源：用户指令「原型和PRD不一样的，以PRD为准」。
+- 依据：PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §6.0–§6.2、§5.4.3（11-08 版，Notion 最后编辑 11-11）；`决策日志.md` 2026-11-12「[修订] 老师端 AI Tutor：原型和 PRD 不一致时以 PRD 为准」。
+- 口径：以 PRD 为准；PRD 没写到的版式和细节参照原型；两边不一致的一律按 PRD。上一节的「两边不一致的画板按原型」作废。
+- 涉及节点：同上一节的 10 帧、卡片状态板 `2259:29943`、规则板 `2261:29870`、改动说明 `2261:29908`、列标题 `2261:29856`；Components section 里的 Student Pagination `4427:1152`、Mark Group `4430:1053`、Open Response `4434:1059`、Behavior Alert Row `4434:1732`、Empty State `4434:1777`。
+
+按 PRD 改的地方（前端按原型实现的，也要跟着改）：
+
+| 位置 | 原来（原型 / 上一轮判断） | 现在（PRD） | PRD 出处 | 帧 |
+| --- | --- | --- | --- | --- |
+| 顶栏返回 | “Assignment Monitor” | “← Back to Assignment” | §6.0 | 除状态板外的 9 帧 |
+| 翻页 | “Previous Student” / “Next Student” | “← Prev” / “Next →”（位置不变，PRD 没写位置） | §6.0 | 除状态板外的 9 帧 |
+| 教师标注 | Read it / Needs support / Unclear | Read it / Still needs support / Can't tell | §6.2 | Brandon、Carmen、抽屉帧、状态板 |
+| No usable recording 提示 | “The recording didn't capture enough to listen to. There's nothing to mark.” | “The recording has nothing to listen to.” | §6.2 | Gabriel、Fatima、状态板 |
+| K 年级右栏标题 | “Oral Retelling — on their own” | “Oral Retelling” | §6.2（右栏放的就是 Oral Retelling 卡） | Aaliyah（K） |
+| K 年级右栏小字 | “For Kindergarten, this retelling is the independent evidence.” | “Kindergarten's independent evidence is this retelling.” | §6.2 | Aaliyah（K） |
+| 空态正文 | “…once they finish reading.” | “…once they finish.” | §6.0 | Isaac、Emma |
+| Behavior alert 摘要 | “The safety check flagged the open response. Open the conversation to read it.” | “Here is a summary of the specific details of the student behavior alert.” | §6.2 | Brandon、Emma、抽屉帧、状态板 |
+| Open Response 标题 | “Open response” | “Open Response” | §6.2 | Brandon、Carmen、Hannah、Gabriel、抽屉帧、状态板 |
+| 长回答截断 | 最多 3 行 + Show more | 前 500 个字符 + Show more | §6.2 | Hannah、状态板 |
+
+- 操作摘要：
+  - 改母版：Student Pagination 两个按钮的文字和图层名；Mark Group 两个变体改名为 `Selected=Still needs support` / `Selected=Can't tell`，选项文字同步；Open Response 五个变体的标题 badge，Long 变体的 Answer 去掉 3 行限制；Behavior Alert Row 的 Summary、Empty State 的 Body 默认值。帧里没有覆盖的实例跟着母版变。
+  - 改帧：顶栏文字（不是组件属性，逐帧改）；右栏 No usable recording 提示；K 帧 Card Header 的 Title / Subtitle；长回答换成一段 671 字符的回答，显示前 497 个字符（截到词边界）+ “…” + Show more。
+  - 规则板：标题去掉 “+ prototype”；头部导航、教师标注、右栏、Kindergarten、Open Response 五条改成 PRD 文案。卡片状态板标题和 Open Response 说明同步。列标题改为 “Latest (PRD 11-08 · APAC-6130)”。改动说明重写「以什么为准」和「待 PM 确认」两段。
+- PRD 没写、沿用原型的（设计判断）：各卡副标题、“Your mark · optional, after listening”、行为标签旁的时长、“They didn't tap any words.”、“No words tapped during Guided Reading.”、Open Response 的 “Not scored” badge、Chat Activity 行里的学生姓名、播放器倍速。
+- PRD 自己前后不一致的，按 §6.2 和更新的说法：
+  - 教师标注 §6.2 是 Still needs support，§5.4.3 是 Needed support（#21）。
+  - §6.0 写 Ended / Expired 时 Summary 显示 “Exited at {phase}”，§6.2 的 Progress 卡是 “Didn't finish” + “· stopped at {phase}”；Fatima 帧按 §6.2（#33）。
+  - Comprehension 状态 §6.2 前一句写 “Correct on first try”，后一句规定文字标签为 “Correct on 1st try”；稿用后者，没单列问题。
+- 踩坑与修正：
+  - 教师标注改成长文案后，卡片状态板底部 4 张标注卡（每张 328 宽）放不下三个选项，“Can't tell” 被裁掉。改为两列两行（每张 672 宽），卡片名同步改为 `Mark · Still needs support` / `Mark · Can't tell`。状态板高 4880 → 5008，没有压到其他帧。
+  - 原来的长回答只有 396 个字符，按 PRD 不到 500 字符就不该出 Show more，所以换成更长的回答。
+  - 第一次批量替换只命中了不在实例里的文字，顶栏和 K 帧标题没换上；改为按节点逐个改。
+- 复核：脚本扫描 10 帧、规则板、改动说明和 Components section，没有残留的原型文案；帧之间不重叠、都在 section 内。截图检查了 Brandon 两栏、Your Turn 状态组、Isaac 空态（顶栏 / 翻页）、K 帧右栏、Hannah 的长回答。
+- 没改：Monitor（1925:10702，APAC-6131）现在写的是 “→ Read it (teacher)”、“→ Still needs support (teacher)”，跟 PRD §5.4.3 的 “(teacher mark)”、Needed support 不一致，不在这次范围内，等 #21 定下来后一起改。
+- 结果状态：已完成。#22–#25、#27 已关闭；#21、#26 缩小为 PRD 内部问题；新增 #33；#32 抽屉组件来源仍待用户提供。
