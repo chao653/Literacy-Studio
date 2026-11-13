@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'"
+    />
+    <link rel="stylesheet" href="offline.css" />
+    <title>Slack</title>
+  </head>
+  <body>
+    <main>
+      <div class="mark" aria-hidden="true"></div>
+      <h1 id="title"></h1>
+      <p id="body"></p>
+      <p id="detail" class="detail"></p>
+      <button id="retry" type="button"></button>
+      <p id="status" class="status"></p>
+    </main>
+    <script src="offline.js"></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "name": "slack-bigsur",
+  "productName": "Slack for Big Sur",
+  "version": "1.0.0",
+  "description": "Runs the current Slack web client as a desktop app on macOS 11 Big Sur.",
+  "private": true,
+  "author": "Literacy-Studio",
+  "license": "MIT",
+  "main": "src/main.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "smoke": "electron . --smoke-test",
+    "icon": "electron build/make-icon.js",
+    "pack": "electron-builder --mac --dir",
+    "dist": "electron-builder --mac dmg zip --x64 --arm64"
+  },
+  "devDependencies": {
+    "electron": "37.10.3",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "io.github.literacystudio.slackbigsur",
+    "productName": "Slack for Big Sur",
+    "artifactName": "Slack-for-Big-Sur-${version}-${arch}.${ext}",
+    "copyright": "MIT License. Not affiliated with Slack Technologies.",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "electronLanguages": [
+      "en",
+      "zh_CN",
+      "zh_TW"
+    ],
+    "mac": {
+      "category": "public.app-category.business",
+      "icon": "build/icon.png",
+      "minimumSystemVersion": "11.0",
+      "identity": "-",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "darkModeSupport": true,
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Slack huddles and calls use the microphone.",
+        "NSCameraUsageDescription": "Slack huddles and calls use the camera.",
+        "CFBundleDevelopmentRegion": "en",
+        "CFBundleLocalizations": [
+          "en",
+          "zh_CN",
+          "zh_TW"
+        ]
+      }
+    },
+    "dmg": {
+      "writeUpdateInfo": false
+    },
+    "electronFuses": {
+      "runAsNode": false,
+      "enableCookieEncryption": true,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true
+    },
+    "publish": null
+  }
+}
