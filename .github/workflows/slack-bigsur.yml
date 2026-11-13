@@ -1,0 +1,126 @@
+name: Slack for Big Sur
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'slack-bigsur/**'
+      - '.github/workflows/slack-bigsur.yml'
+  pull_request:
+    paths:
+      - 'slack-bigsur/**'
+      - '.github/workflows/slack-bigsur.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: slack-bigsur-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: slack-bigsur
+
+jobs:
+  test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: slack-bigsur/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+  macos:
+    name: Build and smoke test (macOS)
+    needs: test
+    runs-on: macos-latest
+    timeout-minutes: 45
+    env:
+      APP_NAME: Slack for Big Sur
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: slack-bigsur/package-lock.json
+      - run: npm ci
+
+      - name: Build dmg and zip for Intel and Apple silicon
+        run: npx electron-builder --mac dmg zip --x64 --arm64
+
+      - name: Check every binary targets macOS 11
+        run: |
+          npm run check:mac -- "dist/mac/$APP_NAME.app" --target=11.0 --arch=x64
+          npm run check:mac -- "dist/mac-arm64/$APP_NAME.app" --target=11.0 --arch=arm64
+          vtool -show-build "dist/mac/$APP_NAME.app/Contents/MacOS/$APP_NAME"
+          vtool -show-build "dist/mac-arm64/$APP_NAME.app/Contents/MacOS/$APP_NAME"
+
+      - name: Verify code signatures and Electron fuses
+        run: |
+          expected=(
+            "RunAsNode is Disabled"
+            "EnableCookieEncryption is Enabled"
+            "EnableNodeOptionsEnvironmentVariable is Disabled"
+            "EnableNodeCliInspectArguments is Disabled"
+            "EnableEmbeddedAsarIntegrityValidation is Enabled"
+            "OnlyLoadAppFromAsar is Enabled"
+          )
+          for app in "$PWD/dist/mac/$APP_NAME.app" "$PWD/dist/mac-arm64/$APP_NAME.app"; do
+            codesign --verify --deep --strict --verbose=2 "$app"
+            codesign --display --verbose=2 "$app" 2>&1 | grep -E '^(Identifier|Signature|Format)'
+            # Run outside the project so npx does not resolve electron-builder's nested copy, which has no bin.
+            fuses="$(cd "$RUNNER_TEMP" && npx --yes @electron/fuses@1.8.0 read --app "$app" | perl -pe 's/\e\[[0-9;]*m//g')"
+            echo "$fuses"
+            for fuse in "${expected[@]}"; do
+              grep -qF "$fuse" <<<"$fuses" || { echo "::error::$app: expected '$fuse'"; exit 1; }
+            done
+          done
+          for image in dist/*.dmg; do
+            hdiutil verify "$image"
+          done
+
+      - name: Smoke test the packaged Apple silicon app against app.slack.com
+        run: |
+          "dist/mac-arm64/$APP_NAME.app/Contents/MacOS/$APP_NAME" --smoke-test \
+            --smoke-screenshot="$RUNNER_TEMP/smoke-arm64.png"
+
+      - name: Smoke test the packaged Intel app under Rosetta
+        run: |
+          if ! /usr/bin/arch -x86_64 /usr/bin/true 2>/dev/null; then
+            echo "::notice::Rosetta 2 is not installed on this runner, so the Intel build was not launched."
+            exit 0
+          fi
+          /usr/bin/arch -x86_64 "dist/mac/$APP_NAME.app/Contents/MacOS/$APP_NAME" --smoke-test \
+            --smoke-screenshot="$RUNNER_TEMP/smoke-x64.png"
+
+      - name: Upload installers
+        uses: actions/upload-artifact@v7
+        with:
+          name: Slack-for-Big-Sur-macOS
+          path: |
+            slack-bigsur/dist/*.dmg
+            slack-bigsur/dist/*.zip
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload smoke test screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: smoke-test-screenshots
+          path: ${{ runner.temp }}/smoke-*.png
+          if-no-files-found: ignore
+          retention-days: 30
