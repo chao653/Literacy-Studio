@@ -21,6 +21,14 @@
 
 4. 登录你的工作区。如果“使用 Google 登录”提示浏览器不安全，请改用邮箱登录，Slack 会把登录码发到你的邮箱。
 
+安装完成后，程序不依赖本仓库的源代码或下载的 dmg，可以把它们删掉。登录状态和设置保存在 `~/Library/Application Support/Slack for Big Sur/`，不要删除这个文件夹。
+
+### 输入邮箱后页面卡住
+
+邮箱登录时，Slack 会在邮箱输入框下方显示 Google reCAPTCHA 人机验证（“进行人机身份验证”复选框），完成后“使用电子邮件登录”按钮才能点。验证框从 `www.google.com` 和 `www.gstatic.com` 加载；如果网络访问不了这两个网址，输入框下面只留一片空白，按钮一直是灰色。
+
+本程序检测到这两个网址连不上时，会自动改从 Google 的备用地址 `www.recaptcha.net` 和 `www.gstatic.cn` 加载验证框。如果备用地址也连不上，会弹窗说明。这时请打开 VPN 或代理，并把它设为“系统代理”（本程序使用 macOS 的系统代理设置），然后重新载入页面。“使用 Google 登录”同样需要能访问 Google。
+
 ## 功能
 
 - 最新版 Slack 网页客户端，Chrome 版本号按 Chrome 的发布节奏自动更新，不会被 Slack 判定为过旧浏览器。
@@ -100,6 +108,7 @@ CI（`.github/workflows/slack-bigsur.yml`）会在 Linux 上跑单元测试，�
 | `src/user-agent.js` | 推算 Chrome 版本，生成 User-Agent 和 Client Hints |
 | `src/ua-override.js` | 通过 Chrome DevTools Protocol 把伪装应用到页面、iframe 和 worker |
 | `src/policy.js` | 哪些网址在程序内打开、哪些交给浏览器、哪些阻止 |
+| `src/recaptcha.js` | Google 网址不可达时，把登录验证（reCAPTCHA）改从备用地址加载 |
 | `src/preload.js` | 从 Slack 侧边栏读取未读数，用于 Dock 角标 |
 | `src/screen-share.js`、`src/picker/` | 屏幕共享选择器 |
 | `src/offline/` | 离线页面 |
