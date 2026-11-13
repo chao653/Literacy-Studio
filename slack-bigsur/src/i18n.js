@@ -83,6 +83,11 @@ const STRINGS = {
       'Open System Preferences › Security & Privacy › Privacy and allow “{name}” under Microphone and Camera.',
     'dialog.openSystemPreferences': 'Open System Preferences',
     'dialog.diagnosticsCopied': 'Diagnostic info copied to the clipboard.',
+    'dialog.captchaUnavailable': 'The sign-in check (Google reCAPTCHA) could not load',
+    'dialog.captchaUnavailableDetail':
+      'Slack asks for a reCAPTCHA check when you sign in, but {host} could not be reached ({error}). Check your internet connection. If your network blocks Google, turn on your VPN or proxy and set it as the system proxy, then reload.',
+    'dialog.captchaRetryDetail':
+      '{host} could not be reached ({error}). After reloading, the check will load from Google’s alternative address.',
 
     'download.done': 'Download complete',
     'download.failed': 'Download failed',
@@ -179,6 +184,10 @@ const STRINGS = {
     'dialog.mediaPermissionDetail': '请打开 系统偏好设置 › 安全性与隐私 › 隐私，在“麦克风”和“摄像头”中允许“{name}”。',
     'dialog.openSystemPreferences': '打开系统偏好设置',
     'dialog.diagnosticsCopied': '诊断信息已拷贝到剪贴板。',
+    'dialog.captchaUnavailable': '无法加载登录所需的人机验证（Google reCAPTCHA）',
+    'dialog.captchaUnavailableDetail':
+      'Slack 登录时要求完成 reCAPTCHA 验证，但无法连接 {host}（{error}）。请检查网络连接；如果你的网络无法访问 Google，请打开 VPN 或代理并设为“系统代理”，然后重新载入。',
+    'dialog.captchaRetryDetail': '无法连接 {host}（{error}）。重新载入后，本程序会改用 Google 的备用地址加载人机验证。',
 
     'download.done': '下载完成',
     'download.failed': '下载失败',

@@ -16,6 +16,7 @@ const {
   session,
   shell,
   systemPreferences,
+  webContents,
 } = require('electron');
 
 const policy = require('./policy');
@@ -28,6 +29,7 @@ const { Store } = require('./store');
 const { restoreBounds, MIN_SIZE } = require('./window-state');
 const { registerDownloads } = require('./downloads');
 const { registerScreenShare } = require('./screen-share');
+const { registerRecaptchaFallback } = require('./recaptcha');
 
 const isMac = process.platform === 'darwin';
 
@@ -57,6 +59,7 @@ const PRIVACY_SETTINGS = {
 const ZOOM = { step: 0.1, min: 0.5, max: 3 };
 const CRASH_RELOAD_LIMIT = 3;
 const CRASH_WINDOW_MS = 60 * 1000;
+const CAPTCHA_DIALOG_INTERVAL_MS = 60 * 1000;
 
 // Permissions Slack uses (notifications, huddles, screen sharing, clipboard, file
 // uploads); anything else is denied, and only Slack's own origins get any of them.
@@ -90,6 +93,8 @@ let mainWindowReady = false;
 let isQuitting = false;
 let downloads = null;
 let mediaDialogShown = false;
+let captchaDialogOpen = false;
+let captchaDialogClosedAt = 0;
 const unread = { mentions: 0, unread: 0, title: '' };
 let lastBadge = null;
 const crashTimes = [];
@@ -119,6 +124,7 @@ function onReady() {
     t,
   });
   registerScreenShare(ses, { getMainWindow: () => mainWindow, t, appName: app.getName() });
+  registerRecaptchaFallback(ses, { onUnavailable: explainCaptchaUnavailable });
   ipcMain.on('slack:unread', onUnreadCounts);
 
   if (isMac) {
@@ -350,6 +356,30 @@ async function explainMediaPermission(kind, parent) {
     cancelId: 1,
   });
   if (response === 0) shell.openExternal(PRIVACY_SETTINGS[kind]);
+}
+
+async function explainCaptchaUnavailable({ host, error, mirrored, webContentsId }) {
+  if (captchaDialogOpen || Date.now() - captchaDialogClosedAt < CAPTCHA_DIALOG_INTERVAL_MS) return;
+  const contents = (webContentsId && webContents.fromId(webContentsId)) || (mainWindow && mainWindow.webContents);
+  const parent = contents && !contents.isDestroyed() ? BrowserWindow.fromWebContents(contents) : mainWindow;
+  captchaDialogOpen = true;
+  try {
+    const { response } = await messageBox(parent, {
+      type: 'warning',
+      message: t('dialog.captchaUnavailable'),
+      detail: t(mirrored ? 'dialog.captchaUnavailableDetail' : 'dialog.captchaRetryDetail', {
+        host,
+        error: String(error).replace(/^net::/, ''),
+      }),
+      buttons: [t('view.reload'), t('dialog.cancel')],
+      defaultId: 0,
+      cancelId: 1,
+    });
+    if (response === 0 && contents && !contents.isDestroyed()) contents.reload();
+  } finally {
+    captchaDialogOpen = false;
+    captchaDialogClosedAt = Date.now();
+  }
 }
 
 // ---------------------------------------------------------------------------
