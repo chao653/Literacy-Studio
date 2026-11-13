@@ -40,6 +40,9 @@ function cliValue(name) {
 const smokeTest = process.argv.includes('--smoke-test');
 if (smokeTest) {
   app.setPath('userData', fs.mkdtempSync(path.join(os.tmpdir(), 'slack-bigsur-smoke-')));
+  // The throwaway profile must not touch the real Keychain entry: a differently signed build
+  // would get an access prompt, which blocks forever when nobody can answer it (CI).
+  app.commandLine.appendSwitch('use-mock-keychain');
 }
 
 const PRELOAD = path.join(__dirname, 'preload.js');

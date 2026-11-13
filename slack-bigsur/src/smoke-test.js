@@ -41,6 +41,10 @@ async function runSmokeTest(win, { profile, timeoutMs = 90000, settleMs = 8000, 
   ipcMain.on('slack:unread', (event) => {
     if (event.sender === contents) preloadReported = true;
   });
+  const watchdog = setTimeout(
+    () => report({ ...result, ok: false, error: 'smoke test did not finish in time' }),
+    timeoutMs + settleMs + 30000,
+  );
 
   try {
     await waitForSlack(contents, Date.now() + timeoutMs);
@@ -65,6 +69,11 @@ async function runSmokeTest(win, { profile, timeoutMs = 90000, settleMs = 8000, 
     result.error = error.message;
   }
 
+  clearTimeout(watchdog);
+  report(result);
+}
+
+function report(result) {
   process.stdout.write(`SMOKE_RESULT ${JSON.stringify(result)}\n`);
   app.exit(result.ok ? 0 : 1);
 }
