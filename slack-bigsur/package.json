@@ -16,7 +16,8 @@
     "smoke": "electron . --smoke-test",
     "icon": "electron build/make-icon.js",
     "pack": "electron-builder --mac --dir",
-    "dist": "electron-builder --mac dmg zip --x64 --arm64"
+    "dist": "electron-builder --mac dmg zip --x64 --arm64",
+    "check:mac": "node build/check-macos-target.js"
   },
   "devDependencies": {
     "electron": "37.10.3",
