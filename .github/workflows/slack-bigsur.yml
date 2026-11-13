@@ -59,6 +59,10 @@ jobs:
       - run: npm ci
 
       - name: Build dmg and zip for Intel and Apple silicon
+        env:
+          # electron-builder skips signing on pull_request builds to protect certificates. The app is
+          # signed ad hoc (no secrets involved), and Apple silicon refuses to launch unsigned code.
+          CSC_FOR_PULL_REQUEST: 'true'
         run: npx electron-builder --mac dmg zip --x64 --arm64
 
       - name: Check every binary targets macOS 11
