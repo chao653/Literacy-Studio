@@ -96,9 +96,13 @@ jobs:
             hdiutil verify "$image"
           done
 
+      # perl's alarm survives exec, so it kills a launch that hangs before the app's own watchdog
+      # can run. --use-mock-keychain keeps the two differently signed builds from hitting a
+      # Keychain access prompt that nobody can answer.
       - name: Smoke test the packaged Apple silicon app against app.slack.com
         run: |
-          "dist/mac-arm64/$APP_NAME.app/Contents/MacOS/$APP_NAME" --smoke-test \
+          perl -e 'alarm shift; exec @ARGV' 300 \
+            "dist/mac-arm64/$APP_NAME.app/Contents/MacOS/$APP_NAME" --smoke-test --use-mock-keychain \
             --smoke-screenshot="$RUNNER_TEMP/smoke-arm64.png"
 
       - name: Smoke test the packaged Intel app under Rosetta
@@ -107,8 +111,9 @@ jobs:
             echo "::notice::Rosetta 2 is not installed on this runner, so the Intel build was not launched."
             exit 0
           fi
-          /usr/bin/arch -x86_64 "dist/mac/$APP_NAME.app/Contents/MacOS/$APP_NAME" --smoke-test \
-            --smoke-screenshot="$RUNNER_TEMP/smoke-x64.png"
+          perl -e 'alarm shift; exec @ARGV' 300 \
+            /usr/bin/arch -x86_64 "dist/mac/$APP_NAME.app/Contents/MacOS/$APP_NAME" --smoke-test --use-mock-keychain \
+            --smoke-timeout=150 --smoke-screenshot="$RUNNER_TEMP/smoke-x64.png"
 
       - name: Upload installers
         uses: actions/upload-artifact@v7
