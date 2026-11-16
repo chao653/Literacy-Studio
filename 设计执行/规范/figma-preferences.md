@@ -23,10 +23,34 @@
 
 ## 业务组件（本项目自建）
 
-- 母版集中放进项目 Figma 文件的「Components」section（待建，建好后回填链接）。
-- 现存母版：待填——随设计推进逐条登记：组件名 + node_id + 变体/属性 + 明细日志链接。
+- 母版集中放在项目 Figma 文件「Components」页（`888:644`）的 [Components section `4427:1173`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=4427-1173)。同页的 `AI Tutor` section（`1225:4594`）是学生端画面参照，不是母版。
+- 现存母版：随设计推进逐条登记，格式为组件名 + node_id + 变体/属性 + 明细日志链接。
 - 已删除组件同样记录在案（不得再引用）。
 - 新增业务组件前先查基础组件库清单确认无覆盖；新母版一律放进 Components section。
+
+### 现存母版
+
+**Student Detail（老师端学生详情，17 个）**：2026-11-12 建，明细见 [`设计执行/日志/Student Detail.md`](../日志/Student%20Detail.md) 2026-11-12 节。文字挂 DS 2.0 `text/*` 样式，颜色、间距、圆角绑 DS 2.0 变量，图标是 DS2 Phosphor 实例。
+
+| 组件名 | node_id | 变体 / 属性 |
+| --- | --- | --- |
+| Student Detail / Card Header | `4427:980` | Type = Timeline / Support / Your Turn / Comprehension / Kira said / Chat Activity / Retelling；Title、Subtitle、Show subtitle、Show info（右上 (i)） |
+| Student Detail / Summary Card | `4427:1044` | Card = Progress / Comprehension / Your Turn × Tone = Positive / Warning / Neutral；Answer、Fact |
+| Student Detail / Timeline Phase | `4427:1117` | Phase、Duration、Show duration、Show icon（Your Turn 麦克风）、Show divider、Stopped note / Show stopped、Muted note / Show muted |
+| Student Detail / Your Turn Status | `4427:1127` | Label = No help / Used help / No usable recording / Not offered；Duration、Show duration |
+| Student Detail / Student Pagination | `4427:1152` | 无属性（← Prev / Next →） |
+| Student Detail / Identity | `4427:1164` | Initials、Name、Task、Status、Show status、Total |
+| Student Detail / Word Group | `4430:961` | Heading、Explanation、Show explanation、Show word 1–8 |
+| Student Detail / Audio Player | `4430:998` | Current、Total |
+| Student Detail / Mark Group | `4430:1053` | Selected = None / Read it / Still needs support / Can't tell；Show hint |
+| Student Detail / MCQ Option | `4430:1123` | State = Default / Correct / Wrong；Letter、Option、Show tag |
+| Student Detail / Kira Message | `4430:1149` | Caption、Show caption、Message |
+| Student Detail / Question Card | `4434:942` | Status = Correct on 1st try / Correct after hint / Incorrect / Skipped；Question、Show option 1–4（嵌 MCQ Option） |
+| Student Detail / Open Response | `4434:1059` | Response = Recording / Typed / Long / Under review / Not submitted；Question、Answer（Long 变体放前 500 个字符 + Show more） |
+| Student Detail / Retelling Body | `4434:1461` | Badge = Ready to listen / Cut off early / Too short (under 5s) / No recording；Duration、Transcript、Show transcript、Show unavailable |
+| Student Detail / Behavior Alert Row | `4434:1732` | Status = Needs review / Reviewed；Initials、Name、Time、Summary |
+| Student Detail / Empty State | `4434:1777` | Title、Body |
+| Student Detail / Conversation Detail | `4440:1412` | Status = Needs review / Reviewed；Time、Question、Answer、Review Note（抽屉内容，放进 ShadCN `Sheet`） |
 
 ## 复用惯例（业务纹样）
 
@@ -38,3 +62,5 @@
 - 2026-09-15 由 `project-scaffold` 脚手架创建（模板版，三库口径为 Kira 默认，待项目确认）。
 - 2026-09-28 复用惯例补「数据表格」一条。
 - 2026-09-29 复用惯例补「表格卡片整体样板」一条（`2182:941`）。
+- 2026-11-12 业务组件回填 Components section 链接（`4427:1173`），登记 Student Detail 17 个母版（APAC-6130）。
+- 2026-11-12 Student Detail 母版文案按 PRD 改：Student Pagination、Mark Group 的变体名、Open Response 的长回答截断（APAC-6130，原型和 PRD 不一致以 PRD 为准）。
