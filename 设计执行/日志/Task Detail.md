@@ -133,3 +133,14 @@
 - 复核：截图检查 Intro `2118:33545`、Warm-up `2118:33782`、Results `2118:37315`，Guided 和 Comprehension 各取一张。Exit Preview 按钮宽度正常，标签和内容不重叠，顶栏没有挡住内容。
 - 结果状态：已完成。
 - 截图证据：本仓库为 GitHub 公开仓库，设计稿截图未入库。
+
+## 2026-11-16 · 复查补改：编辑任务 Step 3 去掉 Primary Reading Objective
+
+- 任务来源：用户指令「检查一下设计稿需要修改的内容，是否都改好了」。
+- 依据：PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §3.4 [T2]（10-25）：Phase 1 不显示 Primary Reading Objective。
+- 涉及节点：`[Teacher view] Task detail - edit task - step 3 (review)` · node_id `2095:23824` · [Figma 链接](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2095-23824)
+- 操作摘要：删掉 Objective 卡（`2095:23875`），帧高 1361 → 1187，底部按钮跟着上移。Warm-up 说明句和创建向导一样改为 “3 words from this passage that may block reading or meaning”（见 `创建向导.md` 同日条目）。
+- 复核：截图检查，没有留白或重叠。
+- 缺口：这张帧的顶栏还是 “← Cancel” + 居中 “Edit Task”，步骤条第一步叫 “Task Type”。创建向导已经改为左上 ← + 标题，第一步叫 “Task Settings”。PRD 没写编辑任务的顶栏，所以没改，要用户定是否和向导统一。
+- 结果状态：已完成（顶栏待用户确认）。
+- 截图证据：本仓库为 GitHub 公开仓库，设计稿截图未入库。
