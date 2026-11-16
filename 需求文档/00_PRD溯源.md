@@ -19,3 +19,5 @@
 | P-05 | Teacher View §7.1 Assign Modal | `Task details` 第 1 列 `1925:16903`、`1925:17129`、`1925:17403` |
 | P-06 | Teacher View §5.1–§5.5 Monitor（顶栏、表格、19 行矩阵、AI Insights） | Figma `Monitor AI tutor`（1925:10702）Latest 列；`设计执行/日志/Monitor.md` |
 | P-07 | Teacher View §7.2 Remove Student / §7.3 End Task 弹窗 | `2155:26011`（Remove）、`2160:26919`（End） |
+| P-08 | Teacher View §6.0 Navigation and Empty State；§6.1 Header — Identity Only（T8） | Figma `Student detail - AI Tutor`（286:18332）Latest 列各帧头部；空态 `2257:29973`；`设计执行/日志/Student Detail.md` |
+| P-09 | Teacher View §6.2 Body（Summary、Session Timeline T4、两栏证据 T6、教师标注、Comprehension / Open Response、K–1 Oral Retelling、What Kira said today、Chat Activity） | Latest 列 `2253:29137`、`2254:29181`、`2254:29489`、`2257:29424`、`2257:29708`、`2259:29635`；卡片状态板 `2259:29943`；规则板 `2261:29870` |
