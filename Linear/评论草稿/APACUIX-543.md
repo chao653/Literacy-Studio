@@ -1,18 +1,14 @@
 # APACUIX-543 评论存档
 
 > `Linear/AGENTS.md` 默认草稿不代发；这条按用户 2026-11-16 指示「除了需要我改的，把剩下的问题写到 APACUIX-543 评论区」直接发了，[评论链接](https://linear.app/kira-learning/issue/APACUIX-543/design-qa#comment-c5d2e781)。
-> 下面是发出去的正文。正文来自 `走查/R1_修改清单.md` 和 [PR #12](https://github.com/chao653/Literacy-Studio/pull/12) 的逐条问题；截图用的是工单描述里已上传的 Linear 图片地址，要登录 Linear 才能看，仓库里的原图在 `走查/截图/`。
+> 下面是评论区现在的正文。正文来自 `走查/R1_修改清单.md` 和 [PR #12](https://github.com/chao653/Literacy-Studio/pull/12) 的逐条问题；截图用的是工单描述里已上传的 Linear 图片地址，要登录 Linear 才能看，仓库里的原图在 `走查/截图/`。
+> 用户发出后在 Linear 里删了「这条评论里没有的」一段（需用户确认的 9 条、设计稿自身的 5 条），并回复 @pamper；第 10 条依据里的 APACFE-4690 是 Linear 自动加的链接。存档已按评论区现状同步（11-16）。复核结果见 `走查/R1_评论复核.md`。
 
 ---
 
 **R1 走查 · 剩余待改问题（11-16 整理）**
 
 共 37 条，都是 staging 要改的：已确认 31 条、设计判断 6 条。每条的问题、验证链接和截图放在一起，编号和描述里一致。11-16 已按验证链接逐条复核，这 37 条都仍能复现。
-
-这条评论里没有的：
-
-* 需用户确认的 9 条（第 2、16、18、19、22、23、28、29、47 条），等拍板后再派。
-* 设计稿自身的 5 条（第 9、48–51 条），11-16 已在 Figma 改完；第 50 条核对 PRD 后改为已确认。描述里这几条的状态以这条评论为准。
 
 第 1、10、33 条里设计稿的部分 11-16 已同步，staging 还要改。
 
@@ -161,7 +157,7 @@ R1-02：Quick Assign 弹窗（默认 Scheduled）
 - **位置**：创建向导 Step 1
 - **怎么验证**：[创建向导](https://staging.kira-learning.com/ai-tools/literacy-studio/create/?from=all-tasks) Step 1 左栏，字段顺序是 Task Name → Grade Level → Language → Task Type
 - **设计稿**：[`1947:13006`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=1947-13006)、[`1947:13072`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=1947-13072)
-- **依据**：P-03；[PRD](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §3.2 Task identity fields（11-05 APACFE-4690）
+- **依据**：P-03；[PRD](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §3.2 Task identity fields（11-05 [APACFE-4690](https://linear.app/kira-learning/issue/APACFE-4690/literacy-studio-ai-tutorfecreate-task-step-1)）
 - **建议**：Task Type 移到左栏最上方
 
 R1-04：创建向导 Step 1，未选类型
