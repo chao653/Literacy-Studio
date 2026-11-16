@@ -47,3 +47,24 @@
 - 起因：做 APAC-6131 时发现，文字重绑同一个颜色 token 后，缓存色会停在兜底色 `#000`，画面显示为黑色（详见 `设计执行/日志/Monitor.md`「踩坑与修正」）。
 - 处理：对本 section 13 张 Latest 帧扫描，修正 18 处文字填充——颜色改为 token 在该节点上的解析值并重新绑定，外观回到各自绑定的 token 颜色。未改文案、布局与组件。
 - 结果状态：已完成。
+
+## 2026-11-16 · 按 R1 走查同步：改名 Reading Screener、Quick Assign 弹窗、On Track 去掉推荐卡（R1 #1、#9）
+
+- 任务来源：用户指令「把设计稿没有同步的地方先改一下」；`走查/R1_修改清单.md` #1、#9。
+- 依据：PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) 开头改名说明（11-05）、§7.4（Mode 两句说明、去向提示三种写法、On Track “no Recommended AI Tutor Plan and no note”、成功步骤不再单独弹 Toast）；`需求文档/01_产品规则.md`「Quick Assign 默认 Scheduled…具体时刻交工程取默认值」。
+- 涉及节点：
+  - Step 1 · Scheduled [`2052:17659`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2052-17659)、Step 1 · Live [`2054:18045`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2054-18045)、Step 2 · Assigned Successfully! [`2054:18375`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2054-18375)
+  - 规则板 [`2063:19598`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2063-19598)、Student Detail · On Track [`2071:21371`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2071-21371)
+- 操作摘要：
+  - **改名（#1）**：老师端页面 Latest 帧里面向老师的 “Screener” 统一改为 “Reading Screener”，共 63 处文字（Latest 帧和规则板）。Passage 行 “(same as Reading Screener)” 是混排文字（`2052:17895`、`2054:18281`），用插入字符的方式改，保留原样式。`_Deprecated` 帧和 section 标题没动。
+  - **Scheduled 弹窗**：Mode 从两张卡改为分段控件 `Mode Segmented Control`（`4486:33291`，Live / Scheduled，默认 Scheduled）。下面一句说明按 PRD：“Students can start any time in the window and pick up where they left off.”（`4486:33298`）。Available from / Until 去掉时刻，只留日期，两列并排。弹窗底部加去向提示（Info 图标 + “A new AI Tutor task and Assignment will be created”，`4486:33299`）。
+  - **Live 弹窗**：同一个分段控件（`4486:33326`），说明句 “You start, pause and end the practice in class. No time limit.”（`4486:33329`），去向提示同上（`4486:33330`）。
+  - **成功步骤**：卡片下加 “New AI Tutor task and Assignment created”（`4486:33342`）。
+  - **规则板**：`2063:19608` 的 On Track 改为不显示推荐面板；`2063:19614` 写明只选日期、时刻交工程、去向提示三种写法；`2063:19617` 写明成功步骤不另弹 Toast，内容还在准备时关弹窗并弹 “Preparing…” Toast。
+  - **On Track 帧**：删掉右侧 `Recommended AI Tutor Plan card`（`2071:21456`），左侧证据卡占满宽度。
+- 设计判断：
+  - Mode 用分段控件，和 staging、Assign 弹窗保持一致。
+  - 两张弹窗帧都画 “新建任务和 Assignment” 这一种去向提示。另外两种（加入已有 Assignment、只新建 Assignment）只写在规则板上，没有单独出帧。
+- 复核：Scheduled、Live、成功步骤、规则板、On Track 逐张截图检查，没有溢出或重叠。
+- 结果状态：已完成。
+- 截图证据：本仓库为 GitHub 公开仓库，设计稿截图未入库。
