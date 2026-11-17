@@ -56,3 +56,16 @@
   - **改动说明**（`2170:28848`）：Scheduled 改为 5 帧、矩阵覆盖改为行 11–19；「文案口径」写明按工单 / PRD 定下的 5 条；「待确认」只留 #11、#15。
 - 复核：新帧与 K–1 帧截图检查；新帧只剩筛选器里的 “Expired” 页签文字；改动说明与新帧无重叠。
 - 结果状态：已完成；#11（Scheduled 暂停 / 手动 End 后的时间文案）、#15（默认排序）待用户确认。
+
+## 2026-11-16 · 按 R1 走查同步：AI Insights 移到 Phase 2、删 T8 说明、“(teacher mark)”（R1 #49、#50、#33）
+
+- 任务来源：用户指令「把设计稿没有同步的地方先改一下」；`走查/R1_修改清单.md` #49、#50、#33。
+- 依据：PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §5.1、§5.6（10-25 AI Insights 整体移到 Phase 2）；§6.1 [T8] 和 [T8 · Global naming] 两处常驻说明已划掉（“Removed 10-25”）；§5.4.3 Teacher mark。
+- 涉及节点：section `Monitor AI tutor` · node_id `1925:10702` · [Figma 链接](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=1925-10702)；规则板 [`2170:28819`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2170-28819)；提示层 [`2488:29877`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2488-29877)。
+- 操作摘要：
+  - **AI Insights（#49）**：10 张 Phase 1 Latest 帧（Scheduled 5 张、Live 5 张）去掉右上 “AI Insights” 按钮。原 AI Insights 两列 6 张帧改名为 `Phase 2 · Monitor · AI Insights · …`（`2167:27408`、`2167:27912`、`2167:28398`、`2168:28110`、`2168:28420`、`2168:28913`），列头改为 “AI Insights states (Phase 2 — not in Phase 1, PRD 10-25)” 和 “(Phase 2, cont.)”。规则板 AI Insights 段标题改为 “AI Insights (Phase 2 — not in Phase 1)”，首句写明 Phase 1 没有按钮和面板，原规则保留给 Phase 2。
+  - **T8 说明（#50）**：Monitor Latest 帧和 Task Detail `1925:16761` 标题下的 “This is assisted practice; results are not used for risk classification.” 整块删除（`T8 note · assisted practice`），老师端页面上已经没有这句。规则板对应条目改为 “Page note (T8) — removed 10-25”。
+  - **(teacher mark)（#33）**：表头 (i) 提示末句改为 “→ … (teacher mark)”，单元格示例 “→ Read it (teacher)” 等一起改，共 15 处。用插入字符的方式改，不动原样式。
+- 复核：截图检查 `2159:26726`（Live · In Progress）和 Task Detail `1925:16761`，按钮、说明删掉后布局正常收拢。查询确认 Latest 帧里不再有 AI Insights 文字（剩下的都在 `_Deprecated` 帧和 Phase 2 帧里），全页没有 `T8 note` 帧。
+- 缺口（需用户确认）：Scheduled 有没有 Pause，两边说法不一样。`需求文档/01_产品规则.md` 第 14 行（APAC-6131）和决策日志都写 Scheduled 的 Not Started / In Progress 也显示 Pause。PRD §4.2 一处写“到期前老师仍可 Pause / Continue / End”，§5.1（10-13）写 “Pause is Live-only … Scheduled has no Pause, only End Task”。设计稿 Scheduled 帧和规则板现在是“没有 Pause”。本次没改，等用户定。
+- 结果状态：已完成；Scheduled Pause 待用户确认。

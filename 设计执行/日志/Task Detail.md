@@ -113,3 +113,34 @@
 - 预览提示 “Preview Mode — Your actions won't be recorded.”：按用户去掉预览条的指令不显示，待确认 #8 关闭，工单与 PRD 待回写。
 - 复核：截图确认按钮为 “← Exit Preview”；Preview 与学生端源页面的差异现为顶栏与 Results 按钮两处。
 - 结果状态：已完成。
+
+## 2026-11-16 · 删 T8 常驻说明；Preview 顶栏换成 10-24 版学生顶栏（R1 #50、#51）
+
+- 任务来源：用户指令「把设计稿没有同步的地方先改一下」；`走查/R1_修改清单.md` #50、#51。
+- 依据：PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §6.1 [T8]、[T8 · Global naming]（常驻说明已划掉，Removed 10-25）；PRD [Student View](https://app.notion.com/p/34e70a1b99248122af86e22655dad2ca) §3 Player top bar（10-24）；`需求文档/01_产品规则.md`「Preview 不加预览条，Home 换成 ← Exit Preview」。
+- 涉及节点：Task Detail [`1925:16761`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=1925-16761)；section `Task details` [`1925:16759`](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=1925-16759) 里 27 张 Preview 帧；规则板文字 `2100:24161`。
+- 操作摘要：
+  - **T8（#50）**：Task Detail 标题下的 “This is assisted practice; results are not used for risk classification.” 删除（和 Monitor 一起处理，见 `Monitor.md` 同日条目）。
+  - **顶栏（#51）**：27 张 Preview 帧原来的顶栏（`Container` / `Assessment -Top nav` / `Top Navigation`）换成学生端组件 `Player Top Bar`（`3620:24677`）的实例，Steps=5。Home 覆盖成 “Exit Preview” + `Icon / ArrowLeft`，宽度改为自适应。变体对应：
+    - Intro 2 张（`2118:33545`、`2118:33589`）：Progress=Before。
+    - Warm-up：Step 1；Echo（含 Guided 列第 1 张 “Start from Echo Complete”）：Step 2；Guided：Step 3；Comprehension：Step 5。
+    - Results（`2118:37315`）：Progress=Done，奖杯点亮。
+  - **页内步骤标签**：除 Intro 和 Results 外的 24 张帧加一行 `Step label`（绝对定位 x=420、y=80、宽 600、居中，`text small/leading-normal/regular` + `base/muted-foreground`），文字如 “Step 1 of 5 · Learn the words”“Step 2 of 5 · Read along with Kira”“Step 3 of 5 · Read the story”“Step 5 of 5 · Answer questions”。
+  - **规则板**：`2100:24161` 末尾补一句顶栏按 Student View 10-24（Exit Preview、一条进度条、奖杯），步骤写在页面上，Intro 和 Results 不编号。
+- 设计判断：
+  - 步骤名用学生能看懂的说法（Learn the words / Read along with Kira / Read the story / Read on your own / Answer questions，K 第 4 步 Tell the story），不用阶段内部名。PRD 只规定 “Step N of M · step name” 的格式，没给每步的名字，需工程和产品对一下最终文案。
+  - 标签放在顶栏下方 8px、居中。Guided 帧的阅读卡从 y=108 开始，标签从 y=84 上移到 y=80，留出 8px 间距。
+- 复核：截图检查 Intro `2118:33545`、Warm-up `2118:33782`、Results `2118:37315`，Guided 和 Comprehension 各取一张。Exit Preview 按钮宽度正常，标签和内容不重叠，顶栏没有挡住内容。
+- 结果状态：已完成。
+- 截图证据：本仓库为 GitHub 公开仓库，设计稿截图未入库。
+
+## 2026-11-16 · 复查补改：编辑任务 Step 3 去掉 Primary Reading Objective
+
+- 任务来源：用户指令「检查一下设计稿需要修改的内容，是否都改好了」。
+- 依据：PRD [Teacher View](https://app.notion.com/p/34e70a1b992481f386b9c2d22bf61531) §3.4 [T2]（10-25）：Phase 1 不显示 Primary Reading Objective。
+- 涉及节点：`[Teacher view] Task detail - edit task - step 3 (review)` · node_id `2095:23824` · [Figma 链接](https://www.figma.com/design/pCdwCN68j1KGXz3aZZ6Wn0/Literacy-Studio-AI-Tutor?node-id=2095-23824)
+- 操作摘要：删掉 Objective 卡（`2095:23875`），帧高 1361 → 1187，底部按钮跟着上移。Warm-up 说明句和创建向导一样改为 “3 words from this passage that may block reading or meaning”（见 `创建向导.md` 同日条目）。
+- 复核：截图检查，没有留白或重叠。
+- 缺口：这张帧的顶栏还是 “← Cancel” + 居中 “Edit Task”，步骤条第一步叫 “Task Type”。创建向导已经改为左上 ← + 标题，第一步叫 “Task Settings”。PRD 没写编辑任务的顶栏，所以没改，要用户定是否和向导统一。
+- 结果状态：已完成（顶栏待用户确认）。
+- 截图证据：本仓库为 GitHub 公开仓库，设计稿截图未入库。
